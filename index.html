@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nabd Digital | نَبض ديجيتال</title>
+    <title>Nabd Digital | نَبض ديجيتال - وكالة تسويق رقمي</title>
+    <link rel="icon" type="image/png" href="images/image_1.png">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,39 +12,48 @@
             --secondary: #FF7675;
             --bg-dark: #0a0a12;
             --glass: rgba(255, 255, 255, 0.05);
+            --text-light: #ffffff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease; }
         body { 
             background-color: var(--bg-dark); 
-            color: white; 
+            color: var(--text-light); 
             font-family: 'Tajawal', 'Montserrat', sans-serif;
             overflow-x: hidden;
         }
 
         /* Navigation */
         nav {
-            padding: 20px 8%;
+            padding: 15px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(15px);
-            background: var(--glass);
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 18, 0.8);
             position: fixed;
             width: 100%;
             top: 0; z-index: 1000;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
+        /* تنسيق اللوجو في الناف بار */
+        .nav-logo img {
+            height: 50px; /* تحكم في حجم اللوجو من هنا */
+            width: auto;
+        }
+
         .lang-switch {
-            background: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 10px 25px;
+            border-radius: 30px;
             cursor: pointer;
             font-weight: bold;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
         }
+        .lang-switch:hover { transform: scale(1.05); }
 
         /* Hero Section */
         .hero {
@@ -52,75 +62,174 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: radial-gradient(circle at top right, rgba(108, 92, 231, 0.2), transparent),
-                        radial-gradient(circle at bottom left, rgba(255, 118, 117, 0.1), transparent);
+            position: relative;
+            overflow: hidden;
         }
 
-        .hero-content h1 { font-size: 4rem; margin-bottom: 20px; background: linear-gradient(90deg, #fff, var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-content p { font-size: 1.5rem; opacity: 0.8; margin-bottom: 40px; }
+        /* خلفية قسم الهيرو - ضع صورة الغلاف العريضة هنا */
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* تأكد من اسم الصورة الصحيح هنا */
+            background: url('images/image_6.png') no-repeat center center/cover; 
+            z-index: -1;
+        }
+        
+        /* طبقة تعتيم فوق الخلفية لتوضيح النص */
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 10, 18, 0.6);
+            z-index: 0;
+        }
 
-        /* Grid Services */
-        .services { padding: 100px 8%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .hero-content { z-index: 1; position: relative; padding: 0 20px; }
+        .hero-content h1 { font-size: 4.5rem; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .hero-content p { font-size: 1.6rem; opacity: 0.9; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 8%;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            background: #11111b;
+        }
+        .about-text { flex: 1; }
+        .about-text h2 { font-size: 3rem; margin-bottom: 30px; color: var(--secondary); }
+        .about-text p { font-size: 1.2rem; line-height: 1.8; opacity: 0.8; margin-bottom: 20px; }
+        
+        /* تنسيق صورة قسم من نحن */
+        .about-image { flex: 1; }
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 2px solid var(--primary);
+        }
+
+        /* Services Section */
+        .services { padding: 100px 8%; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 3rem; background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         .card {
             background: var(--glass);
-            padding: 40px;
+            padding: 30px;
             border-radius: 24px;
             border: 1px solid rgba(255,255,255,0.1);
             text-align: center;
+            overflow: hidden;
         }
-        .card:hover { transform: translateY(-10px); border-color: var(--secondary); background: rgba(255,255,255,0.08); }
+        .card:hover { transform: translateY(-15px); border-color: var(--secondary); background: rgba(255,255,255,0.08); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        
+        /* تنسيق صور الخدمات داخل الكروت */
+        .card-image {
+            height: 200px;
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+        .card-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .card:hover .card-image img { transform: scale(1.1); }
+
+        .card h3 { font-size: 1.8rem; margin-bottom: 15px; color: var(--primary); }
+        .card p { font-size: 1.1rem; opacity: 0.8; line-height: 1.6; }
 
         /* RTL/LTR Logic */
-        [lang="en"] .hero-content h1 { font-family: 'Montserrat', sans-serif; }
-        [dir="ltr"] .nav-links { order: 2; }
-        [dir="ltr"] .logo { order: 1; }
+        [lang="en"] .hero-content h1, [lang="en"] h2, [lang="en"] h3 { font-family: 'Montserrat', sans-serif; }
+        [dir="ltr"] .nav-logo { order: 1; }
+        [dir="ltr"] .lang-switch { order: 2; }
 
         .hidden { display: none; }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 3rem; }
+            .about-section { flex-direction: column; }
+            .about-image { order: -1; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">
-            <span class="lang-ar">نَبض ديجيتال</span>
-            <span class="lang-en hidden">Nabd Digital</span>
+        <div class="nav-logo">
+            <img src="images/image_0.png" alt="Nabd Digital Logo">
         </div>
         <button class="lang-switch" onclick="toggleLanguage()">English</button>
     </nav>
 
     <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="lang-ar">
-                <h1>نُحرك سكون علامتك التجارية</h1>
-                <p>وكالة رائدة في الأردن لصناعة المحتوى وإدارة المنصات.</p>
-                <a href="#" class="btn-pro" style="color:white; border: 1px solid var(--secondary); padding: 15px 30px; border-radius: 30px; text-decoration: none;">ابدأ مشروعك معنا</a>
+                <h1>نبضُ علامتك.. في قلب العالم الرقمي</h1>
+                <p>نحن الوكالة التي تمزج الإبداع بالبيانات، لنحول حضورك الرقمي إلى قصة نجاح ملموسة في السوق الأردني والعالمي.</p>
             </div>
             <div class="lang-en hidden">
-                <h1>Pulse Your Brand to Life</h1>
-                <p>Jordan's Leading Agency for Content Creation & Social Management.</p>
-                <a href="#" class="btn-pro" style="color:white; border: 1px solid var(--secondary); padding: 15px 30px; border-radius: 30px; text-decoration: none;">Start Your Project</a>
+                <h1>Your Brand's Pulse in the Digital Heart</h1>
+                <p>We blend creativity with data to transform your digital presence into a tangible success story in the Jordanian and global market.</p>
             </div>
         </div>
     </section>
 
+    <section class="about-section">
+        <div class="about-text">
+            <div class="lang-ar">
+                <h2>من هم "نَبض ديجيتال"؟</h2>
+                <p>نحن أكثر من مجرد وكالة تسويق؛ نحن شركاؤك في النمو. تأسسنا في عمان برؤية واضحة: سد الفجوة بين العلامات التجارية وجمهورها من خلال استراتيجيات مبتكرة ومحتوى يخاطب القلوب والعقول.</p>
+                <p>فريقنا يضم نخبة من المبدعين، المحللين، والخبراء الشغوفين بكل ما هو رقمي، نعمل معاً لنضمن أن علامتك التجارية لا تواكب الترند فحسب، بل تصنعه.</p>
+            </div>
+            <div class="lang-en hidden">
+                <h2>Who Are "Nabd Digital"?</h2>
+                <p>We are more than just a marketing agency; we are your partners in growth. Founded in Amman with a clear vision: to bridge the gap between brands and their audiences through innovative strategies and content that speaks to hearts and minds.</p>
+                <p>Our team consists of elite creatives, analysts, and experts passionate about everything digital, working together to ensure your brand doesn't just follow trends, but sets them.</p>
+            </div>
+        </div>
+        <div class="about-image">
+            <img src="images/image_7.png" alt="Nabd Digital Team in Amman">
+        </div>
+    </section>
+
     <section class="services">
-        <div class="card">
-            <h3 class="lang-ar">إدارة المنصات</h3>
-            <h3 class="lang-en hidden">Social Management</h3>
-            <p class="lang-ar">نمو حقيقي وتفاعل مستمر.</p>
-            <p class="lang-en hidden">Real growth and constant engagement.</p>
+        <div class="section-header">
+            <h2 class="lang-ar">خدماتنا الاحترافية</h2>
+            <h2 class="lang-en hidden">Our Professional Services</h2>
         </div>
-        <div class="card" style="border-color: var(--primary);">
-            <h3 class="lang-ar">صناعة المحتوى</h3>
-            <h3 class="lang-en hidden">Content Creation</h3>
-            <p class="lang-ar">تصاميم وفيديوهات تخطف الأنظار.</p>
-            <p class="lang-en hidden">Eye-catching designs and videos.</p>
-        </div>
-        <div class="card">
-            <h3 class="lang-ar">الإعلانات الممولة</h3>
-            <h3 class="lang-en hidden">Paid Ads</h3>
-            <p class="lang-ar">استهداف ذكي للجمهور الأردني.</p>
-            <p class="lang-en hidden">Smart targeting for the Jordanian audience.</p>
+        <div class="services-grid">
+            
+            <div class="card">
+                <div class="card-image">
+                    <img src="images/image_1.png" style="object-fit: contain; padding: 20px; background: rgba(108, 92, 231, 0.1);" alt="Social Media Management">
+                </div>
+                <h3 class="lang-ar">إدارة المنصات</h3>
+                <h3 class="lang-en hidden">Social Media Management</h3>
+                <p class="lang-ar">بناء مجتمعات رقمية نشطة، وزيادة التفاعل والولاء لعلامتك التجارية.</p>
+                <p class="lang-en hidden">Building active digital communities, increasing engagement and brand loyalty.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <img src="images/image_8.png" alt="Content Creation">
+                </div>
+                <h3 class="lang-ar">صناعة المحتوى الإبداعي</h3>
+                <h3 class="lang-en hidden">Creative Content Creation</h3>
+                <p class="lang-ar">تصوير احترافي، تصميم جرافيك، وإنتاج فيديوهات Reels تخطف الأنظار.</p>
+                <p class="lang-en hidden">Professional photography, graphic design, and eye-catching Reels video production.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <img src="images/image_9.png" alt="Paid Advertising & Data">
+                </div>
+                <h3 class="lang-ar">الإعلانات والبيانات</h3>
+                <h3 class="lang-en hidden">Paid Ads & Data Analytics</h3>
+                <p class="lang-ar">حملات إعلانية موجهة بدقة تعتمد على تحليل البيانات لتحقيق أعلى عائد.</p>
+                <p class="lang-en hidden">Precisely targeted ad campaigns based on data analysis for maximum ROI.</p>
+            </div>
         </div>
     </section>
 
